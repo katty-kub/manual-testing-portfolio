@@ -12,14 +12,14 @@ Aplikace obsahuje přihlašovací stránku a chráněný uživatelský dashboard
 
 Uživatel zadá svůj e-mail a heslo. Po úspěšném přihlášení bude přesměrován na dashboard. Při zadání neplatných údajů zůstane na přihlašovací stránce a zobrazí se mu chybová zpráva.
 
-## 3\. Testovací účet
+## 3. Testovací účty
 
-Testovací účet je určený pouze pro účely tohoto projektu.
+Testovací účty jsou určené pouze pro účely tohoto projektu.
 
-| Údaj | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo123` |
+| Účel účtu | E-mail | Heslo |
+| --- | --- | --- |
+| Standardní testy přihlášení | `test@test.cz` | `Heslo123` |
+| Test maximální délky hesla | `boundary20@test.cz` | `Heslo123456789012345` |
 
 ## 4\. Funkční požadavky
 

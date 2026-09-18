@@ -434,28 +434,28 @@ Nevyplněno – test zatím nebyl proveden.
 - Aplikace je spuštěná.
 - Uživatel není přihlášený.
 - Přihlašovací stránka je otevřená.
-- Testovací účet existuje.
+- Testovací účet s heslem o délce 20 znaků existuje.
 
 ## Testovací data
 
 | Pole | Hodnota |
 | --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `12345678901234567890` – přesně 20 znaků |
+| E-mail | `boundary20@test.cz` |
+| Heslo | `Heslo123456789012345` – přesně 20 znaků |
 
 ## Kroky testu
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
 | 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Do pole Heslo zadat `12345678901234567890` – přesně 20 znaků. | Heslo je zadané a jeho znaky jsou skryté. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle a nezobrazí se upozornění na neplatnou délku hesla. |
-| 5 | Zkontrolovat výsledek přihlášení a aktuální adresu stránky. | Aplikace upozorní na neplatné přihlašovací údaje a uživatel zůstane na stránce `/login`. |
+| 2 | Do pole E-mail zadat `boundary20@test.cz`. | E-mail se zobrazí v poli. |
+| 3 | Do pole Heslo zadat `Heslo123456789012345` – přesně 20 znaků. | Heslo je zadané, jeho znaky jsou skryté a nezobrazí se upozornění na neplatnou délku. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle. |
+| 5 | Zkontrolovat aktuální adresu a obsah stránky. | Uživatel je přihlášený a přesměrovaný na `/dashboard`. |
 
 ## Očekávaný výsledek
 
-Aplikace přijme heslo o délce 20 znaků jako hodnotu s platnou délkou a nezobrazí chybu délky hesla. Přihlášení se nezdaří, protože heslo neodpovídá testovacímu účtu, a uživatel zůstane na stránce `/login`.
+Heslo o délce přesně 20 znaků je přijato bez validační chyby. Uživatel je úspěšně přihlášený a přesměrovaný na stránku `/dashboard`.
 
 ## Skutečný výsledek
 
@@ -795,11 +795,10 @@ Nevyplněno – test zatím nebyl proveden.
 | 1 | Zkontrolovat obsah stránky `/dashboard`. | Dashboard je zobrazený a obsahuje tlačítko Odhlásit se. |
 | 2 | Kliknout na tlačítko Odhlásit se. | Uživatel je odhlášený a přesměrovaný na přihlašovací stránku. |
 | 3 | Zkontrolovat aktuální adresu stránky. | V adresním řádku je zobrazena adresa `/login`. |
-| 4 | Uživatel se úspěšně odhlásí a je přesměrován na stránku \`/login\`. |
 
 ## Očekávaný výsledek
 
-Uživatel se úspěšně odhlásí, je přesměrován na stránku `/login` a nemůže se bez nového přihlášení vrátit na chráněný dashboard.
+Uživatel se úspěšně odhlásí a je přesměrován na stránku `/login`.
 
 ## Skutečný výsledek
 
