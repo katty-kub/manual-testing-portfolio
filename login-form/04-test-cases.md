@@ -168,9 +168,108 @@ Nevyplněno – test zatím nebyl proveden.
 **Not Run**
 
 ---
+# TC-004 – Odeslání formuláře s prázdným e-mailem
+
+| Položka | Hodnota |
+| --- | --- |
+| Test Case ID | TC-004 |
+| Název | Odeslání formuláře s prázdným e-mailem |
+| Testovací scénář | TS-004 |
+| Požadavek | FR-003 |
+| Typ testu | Negativní |
+| Priorita | Vysoká |
+| Prostředí | Google Chrome, Windows |
+| Stav | Not Run |
+
+## Vstupní podmínky
+
+- Aplikace je spuštěná.
+- Uživatel není přihlášený.
+- Přihlašovací stránka je otevřená.
+
+## Testovací data
+
+| Pole | Hodnota |
+| --- | --- |
+| E-mail | Prázdná hodnota |
+| Heslo | `Heslo123` |
+
+## Kroky testu
+
+| Krok | Akce | Očekávaný výsledek |
+| --- | --- | --- |
+| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Ponechat pole E-mail prázdné. | Pole E-mail zůstane prázdné. |
+| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a zobrazí se upozornění na povinný e-mail. |
+| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
+
+## Očekávaný výsledek
+
+Uživatel není přihlášený. Aplikace upozorní, že pole E-mail je povinné, a uživatel zůstane na stránce `/login`.
+
+## Skutečný výsledek
+
+Nevyplněno – test zatím nebyl proveden.
+
+## Výsledný stav
+
+**Not Run**
+
+---
 
 ## 3\. Poznámka k provedení testů
 
 Pole Skutečný výsledek a Výsledný stav budou doplněna až po spuštění aplikace a skutečném provedení testů.
 
 Test nesmí být označen jako Passed pouze na základě očekávání. Stav Passed lze použít jen tehdy, pokud byl test skutečně proveden a skutečný výsledek odpovídal očekávanému výsledku.
+
+---
+
+# TC-004 – Odeslání s prázdným e-mailem
+
+| Položka | Hodnota |
+|---|---|
+| Test Case ID | TC-004 |
+| Název | Odeslání formuláře s prázdným e-mailem |
+| Testovací scénář | TS-004 |
+| Požadavek | FR-003 |
+| Typ testu | Negativní |
+| Priorita | Vysoká |
+| Prostředí | Google Chrome, Windows |
+| Stav | Not Run |
+
+## Vstupní podmínky
+
+- Aplikace je spuštěná.
+- Uživatel není přihlášený.
+- Přihlašovací stránka je otevřená.
+
+## Testovací data
+
+| Pole | Hodnota |
+|---|---|
+| E-mail | Prázdná hodnota |
+| Heslo | `Heslo123` |
+
+## Kroky testu
+
+| Krok | Akce | Očekávaný výsledek |
+|---|---|---|
+| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Ponechat pole E-mail prázdné. | Pole E-mail zůstane prázdné. |
+| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a aplikace upozorní na chybějící e-mail. |
+| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
+
+## Očekávaný výsledek
+
+Uživatel není přihlášený. Aplikace upozorní, že pole E-mail je povinné, a uživatel zůstane na stránce `/login`.
+
+## Skutečný výsledek
+
+Nevyplněno – test zatím nebyl proveden.
+
+## Výsledný stav
+
+**Not Run**
