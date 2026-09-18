@@ -317,7 +317,56 @@ Nevyplněno – test zatím nebyl proveden.
 **Not Run**
 
 ---
-## 3\. Poznámka k provedení testů
+# TC-007 – Odeslání formuláře s heslem o délce 7 znaků
+
+| Položka | Hodnota |
+| --- | --- |
+| Test Case ID | TC-007 |
+| Název | Odeslání formuláře s heslem o délce 7 znaků |
+| Testovací scénář | TS-007 |
+| Požadavek | FR-005 |
+| Typ testu | Hraniční, negativní |
+| Priorita | Střední |
+| Prostředí | Google Chrome, Windows |
+| Stav | Not Run |
+
+## Vstupní podmínky
+
+- Aplikace je spuštěná.
+- Uživatel není přihlášený.
+- Přihlašovací stránka je otevřená.
+
+## Testovací data
+
+| Pole | Hodnota |
+| --- | --- |
+| E-mail | `test@test.cz` |
+| Heslo | `Heslo12` – přesně 7 znaků |
+
+## Kroky testu
+
+| Krok | Akce | Očekávaný výsledek |
+| --- | --- | --- |
+| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
+| 3 | Do pole Heslo zadat `Heslo12` – přesně 7 znaků. | Heslo je zadané a jeho znaky jsou skryté. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a zobrazí se upozornění, že heslo musí mít minimálně 8 znaků. |
+| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
+
+## Očekávaný výsledek
+
+Uživatel není přihlášený. Aplikace zobrazí upozornění, že heslo musí mít minimálně 8 znaků, a uživatel zůstane na stránce `/login`.
+
+## Skutečný výsledek
+
+Nevyplněno – test zatím nebyl proveden.
+
+## Výsledný stav
+
+**Not Run**
+
+---
+## 3 \. Poznámka k provedení testů
 
 Pole Skutečný výsledek a Výsledný stav budou doplněna až po spuštění aplikace a skutečném provedení testů.
 
