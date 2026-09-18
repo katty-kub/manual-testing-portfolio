@@ -266,7 +266,57 @@ Nevyplněno – test zatím nebyl proveden.
 **Not Run**
 
 ---
+# TC-006 – Test neplatného formátu e-mailu
 
+| Položka | Hodnota |
+| --- | --- |
+| Test Case ID | TC-006 |
+| Název | Test neplatného formátu e-mailu |
+| Testovací scénář | TS-006 |
+| Požadavek | FR-004 |
+| Typ testu | Negativní |
+| Priorita | Vysoká |
+| Prostředí | Google Chrome, Windows |
+| Stav | Not Run |
+
+## Vstupní podmínky
+
+-   Aplikace je spuštěná.
+
+-   Uživatel není přihlášený.
+
+-   Přihlašovací stránka je otevřená.
+
+## Testovací data
+
+| Pole | Hodnota |
+| --- | --- |
+| E-mail | `testtest.cz` |
+| Heslo | `Heslo123` |
+
+## Kroky testu
+
+| Krok | Akce | Očekávaný výsledek |
+| --- | --- | --- |
+| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Do pole E-mail zadat `testtest.cz`. | Hodnota `testtest.cz` se zobrazí v poli E-mail. |
+| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a u pole E-mail se zobrazí upozornění na neplatný formát. |
+| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
+
+## Očekávaný výsledek
+
+Uživatel není přihlášený. Aplikace zobrazí upozornění na neplatný formát e-mailu a uživatel zůstane na stránce `/login`.
+
+## Skutečný výsledek
+
+Nevyplněno – test zatím nebyl proveden.
+
+## Výsledný stav
+
+**Not Run**
+
+---
 ## 3\. Poznámka k provedení testů
 
 Pole Skutečný výsledek a Výsledný stav budou doplněna až po spuštění aplikace a skutečném provedení testů.
