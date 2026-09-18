@@ -217,6 +217,55 @@ Nevyplněno – test zatím nebyl proveden.
 **Not Run**
 
 ---
+# TC-005 – Odeslání formuláře s prázdným heslem
+
+| Položka | Hodnota |
+| --- | --- |
+| Test Case ID | TC-005 |
+| Název | Odeslání formuláře s prázdným heslem |
+| Testovací scénář | TS-005 |
+| Požadavek | FR-003 |
+| Typ testu | Negativní |
+| Priorita | Vysoká |
+| Prostředí | Google Chrome, Windows |
+| Stav | Not Run |
+
+## Vstupní podmínky
+
+- Aplikace je spuštěná.
+- Uživatel není přihlášený.
+- Přihlašovací stránka je otevřená.
+
+## Testovací data
+
+| Pole | Hodnota |
+| --- | --- |
+| E-mail | `test@test.cz` |
+| Heslo | Prázdná hodnota |
+
+## Kroky testu
+
+| Krok | Akce | Očekávaný výsledek |
+| --- | --- | --- |
+| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
+| 3 | Ponechat pole Heslo prázdné. | Pole Heslo zůstane prázdné. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a zobrazí se upozornění na povinné heslo. |
+| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
+
+## Očekávaný výsledek
+
+Uživatel není přihlášený. Aplikace upozorní, že pole Heslo je povinné, a uživatel zůstane na stránce `/login`.
+
+## Skutečný výsledek
+
+Nevyplněno – test zatím nebyl proveden.
+
+## Výsledný stav
+
+**Not Run**
+
+---
 
 ## 3\. Poznámka k provedení testů
 
