@@ -416,6 +416,56 @@ Nevyplněno – test zatím nebyl proveden.
 **Not Run**
 
 ---
+# TC-009 – Odeslání formuláře s heslem o délce 20 znaků
+
+| Položka | Hodnota |
+| --- | --- |
+| Test Case ID | TC-009 |
+| Název | Odeslání formuláře s heslem o délce 20 znaků |
+| Testovací scénář | TS-009 |
+| Požadavek | FR-005 |
+| Typ testu | Hraniční, pozitivní |
+| Priorita | Střední |
+| Prostředí | Google Chrome, Windows |
+| Stav | Not Run |
+
+## Vstupní podmínky
+
+- Aplikace je spuštěná.
+- Uživatel není přihlášený.
+- Přihlašovací stránka je otevřená.
+- Testovací účet existuje.
+
+## Testovací data
+
+| Pole | Hodnota |
+| --- | --- |
+| E-mail | `test@test.cz` |
+| Heslo | `12345678901234567890` – přesně 20 znaků |
+
+## Kroky testu
+
+| Krok | Akce | Očekávaný výsledek |
+| --- | --- | --- |
+| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
+| 3 | Do pole Heslo zadat `12345678901234567890` – přesně 20 znaků. | Heslo je zadané a jeho znaky jsou skryté. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle a nezobrazí se upozornění na neplatnou délku hesla. |
+| 5 | Zkontrolovat výsledek přihlášení a aktuální adresu stránky. | Aplikace upozorní na neplatné přihlašovací údaje a uživatel zůstane na stránce `/login`. |
+
+## Očekávaný výsledek
+
+Aplikace přijme heslo o délce 20 znaků jako hodnotu s platnou délkou a nezobrazí chybu délky hesla. Přihlášení se nezdaří, protože heslo neodpovídá testovacímu účtu, a uživatel zůstane na stránce `/login`.
+
+## Skutečný výsledek
+
+Nevyplněno – test zatím nebyl proveden.
+
+## Výsledný stav
+
+**Not Run**
+
+---
 ## 3 \ . Poznámka k provedení testů
 
 Pole Skutečný výsledek a Výsledný stav budou doplněna až po spuštění aplikace a skutečném provedení testů.
