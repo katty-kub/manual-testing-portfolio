@@ -366,7 +366,57 @@ Nevyplněno – test zatím nebyl proveden.
 **Not Run**
 
 ---
-## 3 \. Poznámka k provedení testů
+# TC-008 – Odeslání formuláře s heslem o délce 8 znaků
+
+| Položka | Hodnota |
+| --- | --- |
+| Test Case ID | TC-008 |
+| Název | Odeslání formuláře s heslem o délce 8 znaků |
+| Testovací scénář | TS-008 |
+| Požadavek | FR-005 |
+| Typ testu | Hraniční, pozitivní |
+| Priorita | Střední |
+| Prostředí | Google Chrome, Windows |
+| Stav | Not Run |
+
+## Vstupní podmínky
+
+- Aplikace je spuštěná.
+- Uživatel není přihlášený.
+- Přihlašovací stránka je otevřená.
+- Testovací účet existuje.
+
+## Testovací data
+
+| Pole | Hodnota |
+| --- | --- |
+| E-mail | `test@test.cz` |
+| Heslo | `Heslo123` – přesně 8 znaků |
+
+## Kroky testu
+
+| Krok | Akce | Očekávaný výsledek |
+| --- | --- | --- |
+| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
+| 3 | Do pole Heslo zadat `Heslo123` – přesně 8 znaků. | Heslo je zadané, jeho znaky jsou skryté a nezobrazí se upozornění na neplatnou délku. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle. |
+| 5 | Zkontrolovat aktuální adresu a obsah stránky. | Uživatel je přihlášený a přesměrovaný na `/dashboard`. |
+
+## Očekávaný výsledek
+
+Uživatel je úspěšně přihlášený. Heslo o délce 8 znaků je přijato a uživatel je přesměrován na stránku `/dashboard`.
+
+## Skutečný výsledek
+
+Nevyplněno – test zatím nebyl proveden.
+
+## Výsledný stav
+
+**Not Run**
+
+---
+## 3 \ . Poznámka k provedení testů
 
 Pole Skutečný výsledek a Výsledný stav budou doplněna až po spuštění aplikace a skutečném provedení testů.
 
