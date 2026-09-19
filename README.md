@@ -1,43 +1,47 @@
 # Manual Testing Portfolio
 
-Portfolio zaměřené na základy manuálního testování webových aplikací.
+Portfolio manuálního testování webové aplikace vytvořené jako součást přípravy na pozici Junior QA Tester.
 
-Projekt postupně vytvořím jako součást přípravy na první pozici Junior QA Tester. Budu v něm dokumentovat celý proces testování jednoduchého přihlašovacího formuláře.
+Projekt **Login Form QA** dokumentuje návrh testů pro jednoduchý přihlašovací formulář, chráněný uživatelský dashboard a odhlášení. Jednotlivé dokumenty na sebe navazují od požadavků přes testovací scénáře až po podrobné test cases.
 
-## Testovaný projekt
+## Aktuálně dokončeno
 
-**Login Form QA**
+| Dokument | Obsah |
+| --- | --- |
+| [Požadavky](login-form/01-requirements.md) | 15 funkčních a 5 nefunkčních požadavků včetně rozsahu projektu a testovacích účtů |
+| [Test Plan](login-form/02-test-plan.md) | Cíl, rozsah, testovací přístupy, prostředí, testovací data, vstupní a výstupní podmínky a rizika |
+| [Testovací scénáře](login-form/03-test-scenarios.md) | 24 scénářů propojených s požadavky a rozdělených podle typu a priority |
+| [Test Cases](login-form/04-test-cases.md) | 22 podrobných test cases s podmínkami, daty, kroky a očekávanými výsledky |
 
-Jednoduchá webová aplikace obsahující přihlašovací formulář a uživatelský dashboard.
+Připravené test cases mají zatím stav **Not Run**. Reálné výsledky budou doplněny po spuštění a otestování aplikace.
 
-## Obsah portfolia
+## Plánované rozšíření
 
-- požadavky aplikace
-- test plan
-- testovací scénáře
-- test cases
-- smoke checklist
-- regression checklist
-- bug reporty
-- exploratory testing
-- závěrečný test report
+- provedení připravených test cases a zaznamenání výsledků,
+- smoke checklist,
+- regression checklist,
+- bug reporty včetně důkazů a kroků k reprodukci,
+- záznam exploratory testingu,
+- závěrečný test report.
 
-## Použité dovednosti
+## Testovací přístupy
 
-- manuální funkcionální testování
-- pozitivní a negativní testování
-- Equivalence Partitioning
-- Boundary Value Analysis
-- psaní test cases
-- evidence a reprodukce chyb
-- určování severity a priority
-- smoke a regresní testování
+Portfolio aktuálně ukazuje práci s těmito oblastmi:
+
+- funkcionální, pozitivní a negativní testování,
+- Equivalence Partitioning,
+- Boundary Value Analysis,
+- návrh testovacích scénářů a test cases,
+- dohledatelnost mezi požadavky, scénáři a test cases,
+- prioritizace testů,
+- základní testy přístupnosti, použitelnosti a responzivity,
+- příprava smoke, regression, exploratory a cross-browser testování.
 
 ## Stav projektu
 
-Projekt je ve vývoji a jednotlivé části postupně doplňuji.
+Dokumentace požadavků a návrh testů jsou dokončené. Provedení testů, evidence nalezených chyb a závěrečné vyhodnocení jsou dalšími kroky projektu.
 
 ## Autorka
 
-Katarína Kubašková  
+**Katarína Kubašková**  
 Junior QA Tester
