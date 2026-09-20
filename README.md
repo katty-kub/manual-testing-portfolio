@@ -1,47 +1,122 @@
-# Manual Testing Portfolio
+# Manual Testing Portfolio – Login Form QA
 
-Portfolio manuálního testování webové aplikace vytvořené jako součást přípravy na pozici Junior QA Tester.
+Portfolio projekt zaměřený na návrh a dokumentaci manuálního testování jednoduché webové aplikace s přihlašovacím formulářem.
 
-Projekt **Login Form QA** dokumentuje návrh testů pro jednoduchý přihlašovací formulář, chráněný uživatelský dashboard a odhlášení. Jednotlivé dokumenty na sebe navazují od požadavků přes testovací scénáře až po podrobné test cases.
+Projekt vznikl jako součást přípravy na první pozici Junior QA Tester. Ukazuje postup od analýzy požadavků přes návrh testů až po přípravu evidence výsledků, bug reportů a závěrečného vyhodnocení.
 
-## Aktuálně dokončeno
+## Jak projekt vzniká
+
+Výchozí modelové požadavky a první návrh dokumentace vznikly s pomocí ChatGPT. Dokumenty postupně procházím, ověřuji jejich návaznost a upravuji je podle vlastních rozhodnutí. Připravené testy následně provedu sama a zaznamenám skutečné výsledky.
+
+Dokud test nebyl skutečně proveden, zůstává označený stavem `Not Run`.
+
+## Testovaný projekt
+
+**Login Form QA**
+
+Jednoduchá webová aplikace obsahující:
+
+- přihlašovací formulář,
+- validaci e-mailu a hesla,
+- chráněný uživatelský dashboard,
+- přihlášení a odhlášení uživatele.
+
+## Dokumentace projektu
 
 | Dokument | Obsah |
 | --- | --- |
-| [Požadavky](login-form/01-requirements.md) | 15 funkčních a 5 nefunkčních požadavků včetně rozsahu projektu a testovacích účtů |
-| [Test Plan](login-form/02-test-plan.md) | Cíl, rozsah, testovací přístupy, prostředí, testovací data, vstupní a výstupní podmínky a rizika |
-| [Testovací scénáře](login-form/03-test-scenarios.md) | 24 scénářů propojených s požadavky a rozdělených podle typu a priority |
-| [Test Cases](login-form/04-test-cases.md) | 22 podrobných test cases s podmínkami, daty, kroky a očekávanými výsledky |
+| [01-requirements.md](login-form/01-requirements.md) | Funkční a nefunkční požadavky aplikace |
+| [02-test-plan.md](login-form/02-test-plan.md) | Rozsah, cíle, přístup a prostředí testování |
+| [03-test-scenarios.md](login-form/03-test-scenarios.md) | Přehled 24 testovacích scénářů |
+| [04-test-cases.md](login-form/04-test-cases.md) | Podrobné kroky a očekávané výsledky 22 test cases |
+| [05-bug-report-template.md](login-form/05-bug-report-template.md) | Šablona pro zaznamenávání nalezených chyb |
+| [06-test-execution.md](login-form/06-test-execution.md) | Evidence skutečných výsledků testů |
+| [07-test-summary-report.md](login-form/07-test-summary-report.md) | Souhrnná testovací zpráva |
+| [08-smoke-checklist.md](login-form/08-smoke-checklist.md) | Rychlá kontrola hlavních funkcí aplikace |
+| [09-regression-checklist.md](login-form/09-regression-checklist.md) | Kontroly prováděné po změně nebo opravě aplikace |
+| [10-exploratory-testing.md](login-form/10-exploratory-testing.md) | Charter a záznam exploratory testing session |
 
-Připravené test cases mají zatím stav **Not Run**. Reálné výsledky budou doplněny po spuštění a otestování aplikace.
+## Rozsah testování
 
-## Plánované rozšíření
+Projekt pokrývá:
 
-- provedení připravených test cases a zaznamenání výsledků,
-- smoke checklist,
-- regression checklist,
-- bug reporty včetně důkazů a kroků k reprodukci,
-- záznam exploratory testingu,
-- závěrečný test report.
+- zobrazení přihlašovacího formuláře,
+- validaci povinných polí,
+- validaci formátu e-mailu,
+- minimální a maximální délku hesla,
+- skrytí zadaného hesla,
+- platné a neplatné přihlašovací údaje,
+- odeslání formuláře tlačítkem a klávesou Enter,
+- odhlášení uživatele,
+- ochranu stránky `/dashboard`,
+- ovládání pomocí klávesnice,
+- srozumitelnost popisků a chybových zpráv,
+- responzivní zobrazení při šířce 360 px,
+- základní kontrolu výkonu,
+- základní cross-browser testování v Microsoft Edge.
 
-## Testovací přístupy
+## Použité testovací přístupy
 
-Portfolio aktuálně ukazuje práci s těmito oblastmi:
-
-- funkcionální, pozitivní a negativní testování,
+- pozitivní testování,
+- negativní testování,
 - Equivalence Partitioning,
 - Boundary Value Analysis,
-- návrh testovacích scénářů a test cases,
-- dohledatelnost mezi požadavky, scénáři a test cases,
-- prioritizace testů,
-- základní testy přístupnosti, použitelnosti a responzivity,
-- příprava smoke, regression, exploratory a cross-browser testování.
+- smoke testování,
+- regresní testování,
+- exploratory testing,
+- testování přístupnosti,
+- testování použitelnosti,
+- responzivní testování,
+- výkonnostní testování,
+- cross-browser testování,
+- dohledatelnost mezi požadavky, scénáři a test cases.
 
-## Stav projektu
+## Přehled projektu
 
-Dokumentace požadavků a návrh testů jsou dokončené. Provedení testů, evidence nalezených chyb a závěrečné vyhodnocení jsou dalšími kroky projektu.
+| Položka | Počet |
+| --- | ---: |
+| Funkční požadavky | 15 |
+| Nefunkční požadavky | 5 |
+| Testovací scénáře | 24 |
+| Test cases | 22 |
+| Smoke kontroly | 6 |
+| Regresní kontroly | 14 |
+| Připravené exploratory sessions | 1 |
+| Aktuálně provedené testy | 0 |
+
+## Plánované testovací prostředí
+
+- Windows
+- Google Chrome
+- Microsoft Edge
+- mobilní rozlišení 360 × 800 px
+- aplikace na adrese `http://localhost:5173`
+
+## Aktuální stav
+
+V repozitáři je připravený výchozí návrh dokumentace. Jednotlivé dokumenty nyní postupně odborně kontroluji a upravuji.
+
+Test cases, smoke test, regresní test a exploratory testing zatím nebyly skutečně provedeny. Jejich stav proto zůstává `Not Run`.
+
+Testovaná aplikace zatím nebyla v rámci tohoto projektu spuštěna. Po zajištění testované aplikace budou doplněny skutečné výsledky, případné bug reporty a konečné vyhodnocení.
+
+## Další kroky
+
+1. Zkontrolovat a upřesnit modelové požadavky.
+2. Zajistit a spustit testovanou aplikaci.
+3. Provést smoke test.
+4. Provést připravené test cases.
+5. Zaznamenat skutečné výsledky.
+6. Vytvořit bug reporty pouze pro skutečně nalezené chyby.
+7. Provést exploratory testing session.
+8. Aktualizovat souhrnnou testovací zprávu.
+9. Vybrané scénáře automatizovat pomocí Playwrightu.
 
 ## Autorka
 
 **Katarína Kubašková**  
-Junior QA Tester
+Junior QA Engineer se znalostí JavaScriptu a základy automatizovaného testování
+
+- [LinkedIn](https://www.linkedin.com/in/katkakubaskova)
+- [GitHub](https://github.com/katty-kub)
+ 
