@@ -4,9 +4,9 @@ Portfolio projekt zaměřený na návrh a dokumentaci manuálního testování j
 
 Projekt vznikl jako součást přípravy na první pozici Junior QA Tester. Ukazuje postup od analýzy požadavků přes návrh testů až po přípravu evidence výsledků, bug reportů a závěrečného vyhodnocení.
 
-## Jak projekt vzniká
+## Vznik projektu
 
-Výchozí modelové požadavky a první návrh dokumentace vznikly s pomocí ChatGPT. Dokumenty postupně procházím, ověřuji jejich návaznost a upravuji je podle vlastních rozhodnutí. Připravené testy následně provedu sama a zaznamenám skutečné výsledky.
+Projekt jsem vytvořila jako součást přípravy na pozici Junior QA Tester. Při návrhu modelových požadavků jsem využila ChatGPT jako podpůrný nástroj. Na základě těchto požadavků jsem zpracovala test plan, testovací scénáře, test cases a další testovací dokumentaci.
 
 Dokud test nebyl skutečně proveden, zůstává označený stavem `Not Run`.
 
@@ -94,7 +94,7 @@ Projekt pokrývá:
 
 ## Aktuální stav
 
-V repozitáři je připravený výchozí návrh dokumentace. Jednotlivé dokumenty nyní postupně odborně kontroluji a upravuji.
+V repozitáři je připravená dokumentace pro plánovaný testovací cyklus.
 
 Test cases, smoke test, regresní test a exploratory testing zatím nebyly skutečně provedeny. Jejich stav proto zůstává `Not Run`.
 
