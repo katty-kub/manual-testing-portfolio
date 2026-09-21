@@ -1,12 +1,26 @@
 # Test Cases – Login Form QA
 
-## 1\. Účel dokumentu
+## 1. Účel dokumentu
 
-Tento dokument obsahuje podrobné test cases vytvořené podle požadavků a testovacích scénářů projektu Login Form QA.
+Tento dokument obsahuje podrobné test cases vytvořené z požadavků a testovacích scénářů projektu Login Form QA.
 
-Každý test case obsahuje vstupní podmínky, testovací data, jednotlivé kroky a očekávaný výsledek.
+Každý test case obsahuje vazbu na scénář a požadavek, testovací data, kroky, očekávaný výsledek, skutečný výsledek a stav. Jeden test case může obsahovat více variant testovacích dat, pokud mají stejné kroky.
 
-## 2\. Používané stavy
+## 2. Společné vstupní podmínky
+
+Pokud konkrétní test case nestanoví jinak:
+
+-   aplikace běží na lokálním serveru,
+
+-   testování probíhá v Google Chrome,
+
+-   stránka `/login` je dostupná,
+
+-   uživatel není přihlášený,
+
+-   před každým test casem je formulář v počátečním stavu.
+
+## 3. Používané stavy
 
 | Stav | Význam |
 | --- | --- |
@@ -15,1111 +29,391 @@ Každý test case obsahuje vstupní podmínky, testovací data, jednotlivé krok
 | Failed | Skutečný výsledek neodpovídá očekávanému výsledku |
 | Blocked | Test nebylo možné dokončit kvůli překážce |
 
----
+## 4. Test cases
 
-# TC-001 – Zobrazení přihlašovacího formuláře
+### TC-001 – Zobrazení přihlašovací stránky
 
 | Položka | Hodnota |
 | --- | --- |
-| Test Case ID | TC-001 |
-| Název | Zobrazení přihlašovacího formuláře |
-| Testovací scénáře | TS-001, TS-002 |
-| Požadavky | FR-001, FR-002 |
+| Testovací scénář | TS-001 |
+| Požadavek | FR-001 |
 | Typ testu | Pozitivní, smoke |
 | Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
+| Stav | Passed |
 
-## Vstupní podmínky
-
--   Aplikace je spuštěná.
-
--   Přihlašovací stránka je dostupná.
-
-## Testovací data
-
-Pro tento test nejsou potřeba žádná testovací data.
-
-## Kroky testu
+**Testovací data:** Nejsou potřeba.
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
 | 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací stránka. |
-| 2 | Zkontrolovat pole E-mail. | Pole E-mail je viditelné. |
-| 3 | Zkontrolovat pole Heslo. | Pole Heslo je viditelné. |
-| 4 | Zkontrolovat tlačítko Přihlásit se. | Tlačítko Přihlásit se je viditelné. |
+| 2 | Zkontrolovat nadpis stránky. | Zobrazí se nadpis `Přihlášení`. |
+| 3 | Zkontrolovat obsah formuláře. | Formulář obsahuje pole E-mail, pole Heslo a tlačítko Přihlásit se. |
 
-## Očekávaný výsledek
+**Celkový očekávaný výsledek:** Přihlašovací stránka je dostupná na `/login` a obsahuje všechny požadované prvky.
 
-Přihlašovací stránka se zobrazí a obsahuje pole E-mail, pole Heslo a tlačítko Přihlásit se.
+**Skutečný výsledek:** Na adrese `/login` se zobrazila přihlašovací stránka s nadpisem `Přihlášení`, poli E-mail a Heslo a tlačítkem Přihlásit se.
 
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
+**Výsledný stav:** Passed
 
 ---
 
-# TC-002 – Přihlášení platnými údaji
+### TC-002 – Kontrola povinných polí
 
 | Položka | Hodnota |
 | --- | --- |
-| Test Case ID | TC-002 |
-| Název | Přihlášení platným e-mailem a heslem |
-| Testovací scénáře | TS-012, TS-015 |
-| Požadavky | FR-007, FR-008, FR-011 |
-| Typ testu | Pozitivní, smoke |
+| Testovací scénář | TS-002 |
+| Požadavek | FR-002 |
+| Typ testu | Negativní |
 | Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
+| Stav | Passed |
 
-## Vstupní podmínky
+**Testovací data:**
 
--   Aplikace je spuštěná.
+| Varianta | E-mail | Heslo |
+| --- | --- | --- |
+| A | Prázdné | Prázdné |
+| B | Prázdné | `Heslo123` |
+| C | `test@test.cz` | Prázdné |
 
--   Uživatel není přihlášený.
-
--   Přihlašovací stránka je otevřená.
-
--   Testovací účet existuje.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo123` |
-
-## Kroky testu
+Pro každou variantu zopakovat následující kroky:
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle. |
-| 5 | Zkontrolovat adresu a obsah zobrazené stránky. | Uživatel je přesměrován na `/dashboard` a zobrazí se informace o úspěšném přihlášení. |
+| 1 | Otevřít nebo obnovit stránku `/login`. | Zobrazí se prázdný přihlašovací formulář. |
+| 2 | Vyplnit pole podle testované varianty. | Zadané hodnoty se zobrazí v příslušných polích. |
+| 3 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a prohlížeč upozorní na první povinné nevyplněné pole. |
+| 4 | Zkontrolovat aktuální adresu. | Uživatel zůstane na `/login`. |
 
-## Očekávaný výsledek
+**Celkový očekávaný výsledek:** Formulář nelze odeslat, pokud je pole E-mail nebo Heslo prázdné.
 
-Uživatel je úspěšně přihlášený a přesměrovaný na stránku `/dashboard`.
+**Skutečný výsledek:** Ve variantách A a B prohlížeč upozornil na prázdné povinné pole E-mail. Ve variantě C upozornil na prázdné povinné pole Heslo. Ve všech variantách se formulář neodeslal a uživatel zůstal na `/login`.
 
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
+**Výsledný stav:** Passed
 
 ---
 
-# TC-003 – Odeslání prázdného formuláře
+### TC-003 – Validace neplatného formátu e-mailu
 
 | Položka | Hodnota |
 | --- | --- |
-| Test Case ID | TC-003 |
-| Název | Odeslání formuláře s prázdným e-mailem a heslem |
 | Testovací scénář | TS-003 |
 | Požadavek | FR-003 |
-| Typ testu | Negativní |
+| Typ testu | Negativní, Equivalence Partitioning |
 | Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
+| Stav | Passed |
 
-## Vstupní podmínky
+**Testovací data:**
 
--   Aplikace je spuštěná.
+| Varianta | E-mail | Důvod neplatnosti |
+| --- | --- | --- |
+| A | `test@test` | Chybí tečka a koncovka domény |
+| B | `test@@test.cz` | Obsahuje dva znaky `@` |
+| C | `test @test.cz` | Obsahuje mezeru |
+| D | `@test.cz` | Chybí část před znakem `@` |
+| E | `test@test.` | Chybí koncovka za poslední tečkou |
 
--   Uživatel není přihlášený.
-
--   Přihlašovací stránka je otevřená.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | Prázdná hodnota |
-| Heslo | Prázdná hodnota |
-
-## Kroky testu
+Pro všechny varianty použít heslo `Heslo123` a zopakovat následující kroky:
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Ponechat pole E-mail prázdné. | Pole zůstane prázdné. |
-| 3 | Ponechat pole Heslo prázdné. | Pole zůstane prázdné. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a zobrazí se upozornění na povinná pole. |
-| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
+| 1 | Otevřít nebo obnovit stránku `/login`. | Zobrazí se prázdný přihlašovací formulář. |
+| 2 | Do pole E-mail zadat hodnotu testované varianty. | Hodnota se zobrazí v poli E-mail. |
+| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou maskované. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a prohlížeč upozorní na neplatný formát e-mailu. |
+| 5 | Zkontrolovat aktuální adresu. | Uživatel zůstane na `/login`. |
 
-## Očekávaný výsledek
+**Celkový očekávaný výsledek:** Každá neplatná e-mailová adresa je odmítnuta a uživatel není přihlášený.
 
-Uživatel není přihlášený. Aplikace upozorní, že pole E-mail a Heslo jsou povinná, a uživatel zůstane na stránce `/login`.
+**Skutečný výsledek:** Prohlížeč odmítl všech pět neplatných e-mailových adres: adresu bez tečky a koncovky domény, se dvěma znaky `@`, s mezerou, bez části před znakem `@` a bez koncovky za poslední tečkou. Ve všech variantách zobrazil validační upozornění, formulář neodeslal a uživatel zůstal na `/login`.
 
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
+**Výsledný stav:** Passed
 
 ---
-# TC-004 – Odeslání formuláře s prázdným e-mailem
+
+### TC-004 – Hraniční hodnoty délky hesla
 
 | Položka | Hodnota |
 | --- | --- |
-| Test Case ID | TC-004 |
-| Název | Odeslání formuláře s prázdným e-mailem |
 | Testovací scénář | TS-004 |
-| Požadavek | FR-003 |
-| Typ testu | Negativní |
-| Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | Prázdná hodnota |
-| Heslo | `Heslo123` |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Ponechat pole E-mail prázdné. | Pole E-mail zůstane prázdné. |
-| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a zobrazí se upozornění na povinný e-mail. |
-| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
-
-## Očekávaný výsledek
-
-Uživatel není přihlášený. Aplikace upozorní, že pole E-mail je povinné, a uživatel zůstane na stránce `/login`.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-005 – Odeslání formuláře s prázdným heslem
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-005 |
-| Název | Odeslání formuláře s prázdným heslem |
-| Testovací scénář | TS-005 |
-| Požadavek | FR-003 |
-| Typ testu | Negativní |
-| Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | Prázdná hodnota |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Ponechat pole Heslo prázdné. | Pole Heslo zůstane prázdné. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a zobrazí se upozornění na povinné heslo. |
-| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
-
-## Očekávaný výsledek
-
-Uživatel není přihlášený. Aplikace upozorní, že pole Heslo je povinné, a uživatel zůstane na stránce `/login`.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-006 – Test neplatného formátu e-mailu
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-006 |
-| Název | Test neplatného formátu e-mailu |
-| Testovací scénář | TS-006 |
 | Požadavek | FR-004 |
-| Typ testu | Negativní |
-| Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
--   Aplikace je spuštěná.
-
--   Uživatel není přihlášený.
-
--   Přihlašovací stránka je otevřená.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `testtest.cz` |
-| Heslo | `Heslo123` |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `testtest.cz`. | Hodnota `testtest.cz` se zobrazí v poli E-mail. |
-| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a u pole E-mail se zobrazí upozornění na neplatný formát. |
-| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
-
-## Očekávaný výsledek
-
-Uživatel není přihlášený. Aplikace zobrazí upozornění na neplatný formát e-mailu a uživatel zůstane na stránce `/login`.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-007 – Odeslání formuláře s heslem o délce 7 znaků
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-007 |
-| Název | Odeslání formuláře s heslem o délce 7 znaků |
-| Testovací scénář | TS-007 |
-| Požadavek | FR-005 |
-| Typ testu | Hraniční, negativní |
+| Typ testu | Hraniční, Boundary Value Analysis |
 | Priorita | Střední |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
+| Stav | Passed |
 
-## Vstupní podmínky
+**Testovací data:**
 
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
+| Varianta | Heslo | Délka | Očekávané chování |
+| --- | --- | --- | --- |
+| A | `1234567` | 7 | Formulář odmítne příliš krátké heslo |
+| B | `12345678` | 8 | Heslo projde kontrolou délky |
+| C | `12345678901234567890` | 20 | Heslo projde kontrolou délky |
+| D | `123456789012345678901` | 21 | Pole nepřijme více než 20 znaků |
 
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo12` – přesně 7 znaků |
-
-## Kroky testu
+Pro každou variantu použít e-mail `test@test.cz`.
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
+| 1 | Otevřít nebo obnovit stránku `/login`. | Zobrazí se prázdný přihlašovací formulář. |
 | 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Do pole Heslo zadat `Heslo12` – přesně 7 znaků. | Heslo je zadané a jeho znaky jsou skryté. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a zobrazí se upozornění, že heslo musí mít minimálně 8 znaků. |
-| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
+| 3 | Do pole Heslo zadat hodnotu testované varianty. | Pole reaguje podle očekávaného chování uvedeného v tabulce testovacích dat. |
+| 4 | U varianty D ověřit délku hodnoty v poli pomocí Chrome DevTools. | Pole obsahuje nejvýše 20 znaků. |
+| 5 | Kliknout na tlačítko Přihlásit se. | Varianta A je zablokována kontrolou délky. Varianty B a C projdou kontrolou délky a zobrazí chybu nesprávných přihlašovacích údajů. Varianta D se odešle pouze s prvními 20 znaky. |
+| 6 | Zkontrolovat aktuální adresu. | Uživatel zůstane na `/login`. |
 
-## Očekávaný výsledek
+**Celkový očekávaný výsledek:** Pole Heslo povolí nejméně 8 a nejvýše 20 znaků. Hodnota kratší než 8 znaků je odmítnuta a 21. znak není do pole přijat.
 
-Uživatel není přihlášený. Aplikace zobrazí upozornění, že heslo musí mít minimálně 8 znaků, a uživatel zůstane na stránce `/login`.
+**Skutečný výsledek:** Heslo se 7 znaky prohlížeč odmítl jako příliš krátké. Hesla s 8 a 20 znaky prošla kontrolou délky a aplikace následně zobrazila chybu nesprávných přihlašovacích údajů. Při pokusu zadat 21 znaků pole přijalo pouze 20 znaků, což bylo ověřeno v Chrome DevTools výsledkem `20`.
 
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
+**Výsledný stav:** Passed
 
 ---
-# TC-008 – Odeslání formuláře s heslem o délce 8 znaků
+
+### TC-005 – Maskování hesla
 
 | Položka | Hodnota |
 | --- | --- |
-| Test Case ID | TC-008 |
-| Název | Odeslání formuláře s heslem o délce 8 znaků |
-| Testovací scénář | TS-008 |
-| Požadavek | FR-005 |
-| Typ testu | Hraniční, pozitivní |
+| Testovací scénář | TS-005 |
+| Požadavek | FR-004 |
+| Typ testu | Funkční |
 | Priorita | Střední |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
+| Stav | Passed |
 
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-- Testovací účet existuje.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo123` – přesně 8 znaků |
-
-## Kroky testu
+**Testovací data:** Heslo `Heslo123`
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Do pole Heslo zadat `Heslo123` – přesně 8 znaků. | Heslo je zadané, jeho znaky jsou skryté a nezobrazí se upozornění na neplatnou délku. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle. |
-| 5 | Zkontrolovat aktuální adresu a obsah stránky. | Uživatel je přihlášený a přesměrovaný na `/dashboard`. |
+| 1 | Otevřít nebo obnovit stránku `/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Kliknout do pole Heslo. | Pole Heslo je aktivní. |
+| 3 | Do pole Heslo zadat `Heslo123`. | Zadané znaky se zobrazí jako maskovací symboly a heslo nelze přečíst. |
 
-## Očekávaný výsledek
+**Celkový očekávaný výsledek:** Znaky zadané do pole Heslo jsou maskované a nezobrazují se jako čitelný text.
 
-Uživatel je úspěšně přihlášený. Heslo o délce 8 znaků je přijato a uživatel je přesměrován na stránku `/dashboard`.
+**Skutečný výsledek:** Po zadání hesla `Heslo123` se jednotlivé znaky zobrazily pouze jako maskovací symboly a heslo nebylo možné z pole přečíst.
 
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
+**Výsledný stav:** Passed
 
 ---
-# TC-009 – Odeslání formuláře s heslem o délce 20 znaků
+
+### TC-006 – Úspěšné přihlášení tlačítkem
 
 | Položka | Hodnota |
 | --- | --- |
-| Test Case ID | TC-009 |
-| Název | Odeslání formuláře s heslem o délce 20 znaků |
-| Testovací scénář | TS-009 |
-| Požadavek | FR-005 |
-| Typ testu | Hraniční, pozitivní |
-| Priorita | Střední |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-- Testovací účet s heslem o délce 20 znaků existuje.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `boundary20@test.cz` |
-| Heslo | `Heslo123456789012345` – přesně 20 znaků |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `boundary20@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Do pole Heslo zadat `Heslo123456789012345` – přesně 20 znaků. | Heslo je zadané, jeho znaky jsou skryté a nezobrazí se upozornění na neplatnou délku. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle. |
-| 5 | Zkontrolovat aktuální adresu a obsah stránky. | Uživatel je přihlášený a přesměrovaný na `/dashboard`. |
-
-## Očekávaný výsledek
-
-Heslo o délce přesně 20 znaků je přijato bez validační chyby. Uživatel je úspěšně přihlášený a přesměrovaný na stránku `/dashboard`.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-010 – Odeslání formuláře s heslem o délce 21 znaků
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-010 |
-| Název | Odeslání formuláře s heslem o délce 21 znaků |
-| Testovací scénář | TS-010 |
-| Požadavek | FR-005 |
-| Typ testu | Hraniční, negativní |
-| Priorita | Střední |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `123456789012345678901` – přesně 21 znaků |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Do pole Heslo zadat `123456789012345678901` – přesně 21 znaků. | Heslo je zadané a jeho znaky jsou skryté. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se neodešle a zobrazí se upozornění, že heslo může mít maximálně 20 znaků. |
-| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
-
-## Očekávaný výsledek
-
-Aplikace odmítne heslo o délce 21 znaků a upozorní, že heslo může mít maximálně 20 znaků. Formulář se neodešle a uživatel zůstane na stránce `/login`.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-011 – Skrytí znaků v poli Heslo
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-011 |
-| Název | Skrytí znaků v poli Heslo |
-| Testovací scénář | TS-011 |
-| Požadavek | FR-006 |
-| Typ testu | Pozitivní |
-| Priorita | Střední |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| Heslo | `Heslo123` |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Kliknout do pole Heslo. | Pole Heslo je aktivní a připravené pro zadávání. |
-| 3 | Do pole Heslo zadat `Heslo123`. | Zadané znaky nejsou čitelné a zobrazují se jako maskovací symboly, například tečky. |
-| 4 | Zkontrolovat obsah pole Heslo. | Skutečná hodnota `Heslo123` není na obrazovce viditelná. |
-
-## Očekávaný výsledek
-
-Znaky zadané do pole Heslo jsou skryté pomocí maskovacích symbolů a skutečná hodnota hesla není na obrazovce čitelná.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-012 – Přihlášení neexistujícím e-mailem
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-012 |
-| Název | Přihlášení neexistujícím e-mailem |
-| Testovací scénář | TS-013 |
-| Požadavky | FR-009, FR-010 |
-| Typ testu | Negativní |
-| Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-- Účet s e-mailem `neexistuje@test.cz` neexistuje.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `neexistuje@test.cz` |
-| Heslo | `Heslo123` |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `neexistuje@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle a zobrazí se zpráva `Neplatný e-mail nebo heslo.` |
-| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
-
-## Očekávaný výsledek
-
-Uživatel není přihlášený. Aplikace zobrazí zprávu `Neplatný e-mail nebo heslo.` a uživatel zůstane na stránce `/login`.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-013 – Přihlášení nesprávným heslem
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-013 |
-| Název | Přihlášení platným e-mailem a nesprávným heslem |
-| Testovací scénář | TS-014 |
-| Požadavky | FR-009, FR-010 |
-| Typ testu | Negativní |
-| Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-- Testovací účet s e-mailem `test@test.cz` existuje.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Spatne123` |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Do pole Heslo zadat `Spatne123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle a zobrazí se zpráva `Neplatný e-mail nebo heslo.` |
-| 5 | Zkontrolovat aktuální adresu stránky. | Uživatel zůstane na stránce `/login`. |
-
-## Očekávaný výsledek
-
-Uživatel není přihlášený. Aplikace zobrazí zprávu `Neplatný e-mail nebo heslo.` a uživatel zůstane na stránce `/login`.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-014 – Odeslání přihlašovacího formuláře klávesou Enter
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-014 |
-| Název | Odeslání přihlašovacího formuláře klávesou Enter |
-| Testovací scénář | TS-016 |
-| Požadavek | FR-012 |
-| Typ testu | Pozitivní |
-| Priorita | Střední |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-- Testovací účet existuje.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo123` |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 4 | V poli Heslo stisknout klávesu Enter. | Formulář se odešle bez kliknutí na tlačítko Přihlásit se. |
-| 5 | Zkontrolovat aktuální adresu a obsah stránky. | Uživatel je přesměrován na `/dashboard` a zobrazí se informace o úspěšném přihlášení. |
-
-## Očekávaný výsledek
-
-Formulář lze odeslat klávesou Enter. Uživatel je úspěšně přihlášený a přesměrovaný na stránku `/dashboard`.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-015 – Odhlášení přihlášeného uživatele
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-015 |
-| Název | Odhlášení přihlášeného uživatele |
-| Testovací scénář | TS-017 |
-| Požadavky | FR-013, FR-014 |
+| Testovací scénář | TS-006, TS-007 |
+| Požadavek | FR-005, FR-006 |
 | Typ testu | Pozitivní, smoke |
 | Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
+| Stav | Passed |
 
-## Vstupní podmínky
+**Testovací data:**
 
-- Aplikace je spuštěná.
-- Uživatel je přihlášený testovacím účtem.
-- Stránka `/dashboard` je otevřená.
-
-## Testovací data
-
-| Pole | Hodnota |
+| E-mail | Heslo |
 | --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo123` |
-
-## Kroky testu
+| `test@test.cz` | `Heslo123` |
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
-| 1 | Zkontrolovat obsah stránky `/dashboard`. | Dashboard je zobrazený a obsahuje tlačítko Odhlásit se. |
-| 2 | Kliknout na tlačítko Odhlásit se. | Uživatel je odhlášený a přesměrovaný na přihlašovací stránku. |
-| 3 | Zkontrolovat aktuální adresu stránky. | V adresním řádku je zobrazena adresa `/login`. |
+| 1 | Otevřít nebo obnovit stránku `/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
+| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou maskované. |
+| 4 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle a uživatel je přesměrován na `/dashboard`. |
+| 5 | Zkontrolovat obsah dashboardu. | Zobrazí se text `Vítejte` a tlačítko Odhlásit se. |
 
-## Očekávaný výsledek
+**Celkový očekávaný výsledek:** Uživatel se pomocí platných údajů úspěšně přihlásí a zobrazí se mu dashboard.
 
-Uživatel se úspěšně odhlásí a je přesměrován na stránku `/login`.
+**Skutečný výsledek:** Po zadání platných přihlašovacích údajů a kliknutí na tlačítko Přihlásit se aplikace přesměrovala uživatele na `/dashboard`. Zobrazil se text `Vítejte` a tlačítko Odhlásit se.
 
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
+**Výsledný stav:** Passed
 
 ---
 
-# TC-016 – Přístup nepřihlášeného uživatele na dashboard
+### TC-007 – Úspěšné přihlášení klávesou Enter
 
 | Položka | Hodnota |
 | --- | --- |
-| Test Case ID | TC-016 |
-| Název | Přístup nepřihlášeného uživatele na dashboard |
-| Testovací scénář | TS-018 |
-| Požadavek | FR-015 |
+| Testovací scénář | TS-006, TS-007 |
+| Požadavek | FR-005, FR-006 |
+| Typ testu | Pozitivní |
+| Priorita | Vysoká |
+| Stav | Passed |
+
+**Testovací data:**
+
+| E-mail | Heslo |
+| --- | --- |
+| `test@test.cz` | `Heslo123` |
+
+| Krok | Akce | Očekávaný výsledek |
+| --- | --- | --- |
+| 1 | Otevřít nebo obnovit stránku `/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
+| 3 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou maskované. |
+| 4 | Se zaměřeným polem Heslo stisknout klávesu Enter. | Formulář se odešle a uživatel je přesměrován na `/dashboard`. |
+| 5 | Zkontrolovat obsah dashboardu. | Zobrazí se text `Vítejte` a tlačítko Odhlásit se. |
+
+**Celkový očekávaný výsledek:** Uživatel se pomocí platných údajů úspěšně přihlásí po stisknutí klávesy Enter.
+
+**Skutečný výsledek:** Po zadání platných přihlašovacích údajů a stisknutí klávesy Enter v poli Heslo aplikace zpracovala formulář, přesměrovala uživatele na `/dashboard` a zobrazila text `Vítejte` a tlačítko Odhlásit se.
+
+**Výsledný stav:** Passed
+
+---
+
+### TC-008 – Přihlášení s nesprávnými údaji
+
+| Položka | Hodnota |
+| --- | --- |
+| Testovací scénář | TS-008 |
+| Požadavek | FR-007 |
 | Typ testu | Negativní |
 | Priorita | Vysoká |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
+| Stav | Passed |
 
-## Vstupní podmínky
+**Testovací data:**
 
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- V prohlížeči není aktivní přihlášená relace.
+| Varianta | E-mail | Heslo | Neplatný údaj |
+| --- | --- | --- | --- |
+| A | `wrong@test.cz` | `Heslo123` | E-mail |
+| B | `test@test.cz` | `Chybne12` | Heslo |
 
-## Testovací data
-
-Pro tento test nejsou potřeba žádná testovací data.
-
-## Kroky testu
+Pro každou variantu zopakovat následující kroky:
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
-| 1 | Do adresního řádku zadat `http://localhost:5173/dashboard`. | Aplikace zjistí, že uživatel není přihlášený. |
-| 2 | Potvrdit adresu klávesou Enter. | Uživatel je automaticky přesměrován na stránku `/login`. |
-| 3 | Zkontrolovat aktuální adresu stránky. | V adresním řádku je zobrazena adresa `/login`. |
-| 4 | Zkontrolovat obsah stránky. | Obsah chráněného dashboardu není zobrazený a je viditelný přihlašovací formulář. |
+| 1 | Otevřít stránku `/login` a zkontrolovat, že jsou obě pole prázdná. | Zobrazí se prázdný přihlašovací formulář. |
+| 2 | Vyplnit E-mail a Heslo podle testované varianty. | Zadané hodnoty se vloží do příslušných polí. |
+| 3 | Kliknout na tlačítko Přihlásit se. | Přihlášení se nezdaří a zobrazí se zpráva `Zadali jste chybný e-mail nebo heslo.` |
+| 4 | Zkontrolovat aktuální adresu a obsah stránky. | Uživatel zůstane na `/login` a dashboard se nezobrazí. |
 
-## Očekávaný výsledek
+**Celkový očekávaný výsledek:** Aplikace odmítne přihlášení, pokud e-mail nebo heslo neodpovídá demo účtu, zobrazí chybovou zprávu a ponechá uživatele na `/login`.
 
-Nepřihlášený uživatel nemá přístup na stránku `/dashboard`. Aplikace ho přesměruje na stránku `/login` a obsah dashboardu nezobrazí.
+**Skutečný výsledek:** Ve variantě A aplikace odmítla formátově platný, ale nesprávný e-mail. Ve variantě B odmítla nesprávné heslo. V obou případech zobrazila zprávu `Zadali jste chybný e-mail nebo heslo.`, ponechala uživatele na `/login` a dashboard nezobrazila.
 
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
+**Výsledný stav:** Passed
 
 ---
-# TC-017 – Ovládání přihlašovacího formuláře pomocí klávesnice
+
+### TC-009 – Odhlášení uživatele
 
 | Položka | Hodnota |
 | --- | --- |
-| Test Case ID | TC-017 |
-| Název | Ovládání přihlašovacího formuláře pouze pomocí klávesnice |
-| Testovací scénář | TS-019 |
+| Testovací scénář | TS-009 |
+| Požadavek | FR-008 |
+| Typ testu | Pozitivní, smoke |
+| Priorita | Vysoká |
+| Stav | Passed |
+
+**Vstupní podmínka:** Uživatel je přihlášený pomocí platného demo účtu a nachází se na `/dashboard`.
+
+**Testovací data:**
+
+| E-mail | Heslo |
+| --- | --- |
+| `test@test.cz` | `Heslo123` |
+
+| Krok | Akce | Očekávaný výsledek |
+| --- | --- | --- |
+| 1 | Zkontrolovat obsah stránky `/dashboard`. | Zobrazí se text `Vítejte` a tlačítko Odhlásit se. |
+| 2 | Kliknout na tlačítko Odhlásit se. | Uživatel je odhlášen a přesměrován na `/login`. |
+| 3 | Zkontrolovat obsah přihlašovací stránky. | Zobrazí se přihlašovací formulář s poli E-mail a Heslo a tlačítkem Přihlásit se. |
+
+**Celkový očekávaný výsledek:** Přihlášený uživatel se může odhlásit a po odhlášení je přesměrován na `/login`.
+
+**Skutečný výsledek:** Po kliknutí na tlačítko Odhlásit se aplikace přesměrovala uživatele na `/login` a zobrazila přihlašovací formulář.
+
+**Výsledný stav:** Passed
+
+---
+
+### TC-010 – Přístup nepřihlášeného uživatele na dashboard
+
+| Položka | Hodnota |
+| --- | --- |
+| Testovací scénář | TS-010 |
+| Požadavek | FR-009 |
+| Typ testu | Negativní, bezpečnostní |
+| Priorita | Vysoká |
+| Stav | Passed |
+
+**Vstupní podmínka:** Uživatel není přihlášený.
+
+**Testovací data:** Nejsou potřeba.
+
+| Krok | Akce | Očekávaný výsledek |
+| --- | --- | --- |
+| 1 | Do adresního řádku prohlížeče zadat `http://localhost:5173/dashboard`. | Aplikace nepřihlášenému uživateli nezobrazí dashboard. |
+| 2 | Zkontrolovat aktuální adresu. | Uživatel je přesměrován na `/login`. |
+| 3 | Zkontrolovat obsah stránky. | Zobrazí se přihlašovací formulář a nezobrazí se text `Vítejte` ani tlačítko Odhlásit se. |
+
+**Celkový očekávaný výsledek:** Nepřihlášený uživatel nemůže zobrazit obsah dashboardu a aplikace ho přesměruje na `/login`.
+
+**Skutečný výsledek:** Po přímém zadání adresy `/dashboard` nepřihlášeným uživatelem aplikace dashboard nezobrazila a přesměrovala uživatele na `/login`.
+
+**Výsledný stav:** Passed
+
+---
+
+### TC-011 – Ovládání formuláře klávesnicí
+
+| Položka | Hodnota |
+| --- | --- |
+| Testovací scénář | TS-011 |
 | Požadavek | NFR-001 |
 | Typ testu | Přístupnost |
 | Priorita | Střední |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
+| Stav | Passed |
 
-## Vstupní podmínky
+**Testovací data:**
 
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-- Testovací účet existuje.
-- Během testu se nepoužívá myš.
-
-## Testovací data
-
-| Pole | Hodnota |
+| E-mail | Heslo |
 | --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo123` |
+| `test@test.cz` | `Heslo123` |
 
-## Kroky testu
+Po otevření stránky nepoužívat myš.
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
-| 1 | Pomocí klávesy Tab přesunout kurzor do pole E-mail. | Pole E-mail získá viditelné zaměření. |
-| 2 | Zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 3 | Stisknout klávesu Tab. | Zaměření se přesune do pole Heslo. |
-| 4 | Zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 5 | Stisknout klávesu Tab. | Zaměření se přesune na tlačítko Přihlásit se. |
-| 6 | Stisknout klávesu Enter. | Formulář se odešle bez použití myši. |
-| 7 | Zkontrolovat aktuální adresu a obsah stránky. | Uživatel je přesměrován na `/dashboard` a zobrazí se informace o úspěšném přihlášení. |
+| 1 | Otevřít nebo obnovit stránku `/login`. | Zobrazí se přihlašovací formulář. |
+| 2 | Stisknout klávesu Tab. | Pole E-mail získá zaměření a je viditelně zvýrazněné. |
+| 3 | Napsat `test@test.cz`. | E-mail se vloží do aktivního pole. |
+| 4 | Stisknout klávesu Tab. | Pole Heslo získá zaměření a je viditelně zvýrazněné. |
+| 5 | Napsat `Heslo123`. | Heslo se vloží do pole a jeho znaky jsou maskované. |
+| 6 | Stisknout klávesu Tab. | Tlačítko Přihlásit se získá zaměření a je viditelně zvýrazněné. |
+| 7 | Stisknout klávesu Enter. | Formulář se odešle a uživatel je přesměrován na `/dashboard`. |
 
-## Očekávaný výsledek
+**Celkový očekávaný výsledek:** Přihlašovací formulář lze ovládat pouze klávesnicí, prvky získávají zaměření v logickém pořadí a aktivní prvek je vždy viditelně zvýrazněný.
 
-Přihlašovací formulář lze celý ovládat pouze pomocí klávesnice. Zaměření se přesouvá v logickém pořadí a uživatel se může přihlásit bez použití myši.
+**Skutečný výsledek:** Pomocí klávesy Tab se focus přesouval v logickém pořadí z pole E-mail do pole Heslo a následně na tlačítko Přihlásit se. Každý aktivní prvek byl viditelně zvýrazněný. Po stisknutí klávesy Enter na tlačítku aplikace přesměrovala uživatele na `/dashboard`.
 
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
+**Výsledný stav:** Passed
 
 ---
-# TC-018 – Srozumitelnost popisků formulářových polí
+
+### TC-012 – Zobrazení při šířce 320 px
 
 | Položka | Hodnota |
 | --- | --- |
-| Test Case ID | TC-018 |
-| Název | Srozumitelnost popisků formulářových polí |
-| Testovací scénář | TS-020 |
+| Testovací scénář | TS-012 |
 | Požadavek | NFR-002 |
-| Typ testu | Přístupnost |
-| Priorita | Střední |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Přihlašovací stránka je otevřená.
-
-## Testovací data
-
-Pro tento test nejsou potřeba žádná testovací data.
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Zkontrolovat textový popisek pole pro zadání e-mailu. | Pole má viditelný a srozumitelný popisek `E-mail`. |
-| 3 | Zkontrolovat umístění popisku `E-mail`. | Je jednoznačně poznat, že popisek patří k poli pro zadání e-mailu. |
-| 4 | Zkontrolovat textový popisek pole pro zadání hesla. | Pole má viditelný a srozumitelný popisek `Heslo`. |
-| 5 | Zkontrolovat umístění popisku `Heslo`. | Je jednoznačně poznat, že popisek patří k poli pro zadání hesla. |
-
-## Očekávaný výsledek
-
-Pole přihlašovacího formuláře mají viditelné a srozumitelné textové popisky. Uživatel dokáže jednoznačně určit, které pole slouží pro zadání e-mailu a které pro zadání hesla.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-
-# TC-019 – Čitelnost a srozumitelnost chybové zprávy
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-019 |
-| Název | Čitelnost a srozumitelnost chybové zprávy |
-| Testovací scénář | TS-021 |
-| Požadavek | NFR-003 |
-| Typ testu | Použitelnost |
-| Priorita | Střední |
-| Prostředí | Google Chrome, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-- Testovací účet existuje.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Spatne123` |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 2 | Do pole Heslo zadat `Spatne123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 3 | Kliknout na tlačítko Přihlásit se. | Zobrazí se chybová zpráva `Neplatný e-mail nebo heslo.` |
-| 4 | Pohledem zkontrolovat chybovou zprávu. | Celý text zprávy je viditelný, čitelný a nepřekrývá jiné prvky formuláře. |
-| 5 | Posoudit význam chybové zprávy. | Ze zprávy je srozumitelné, že zadané přihlašovací údaje nejsou platné. |
-
-## Očekávaný výsledek
-
-Chybová zpráva `Neplatný e-mail nebo heslo.` je celá viditelná, čitelná a srozumitelně informuje uživatele o neplatných přihlašovacích údajích.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-020 – Zobrazení přihlašovacího formuláře na mobilním zařízení
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-020 |
-| Název | Zobrazení přihlašovacího formuláře při šířce 360 px |
-| Testovací scénář | TS-022 |
-| Požadavek | NFR-004 |
 | Typ testu | Responzivita |
 | Priorita | Střední |
-| Prostředí | Google Chrome, Windows, rozlišení 360 × 800 px |
-| Stav | Not Run |
+| Stav | Passed |
 
-## Vstupní podmínky
+**Testovací data:**
 
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-- Vývojářské nástroje prohlížeče jsou dostupné.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo123` |
-| Šířka obrazovky | `360 px` |
-| Výška obrazovky | `800 px` |
-
-## Kroky testu
+| E-mail | Heslo | Šířka zobrazení |
+| --- | --- | --- |
+| `test@test.cz` | `Heslo123` | 320 px |
 
 | Krok | Akce | Očekávaný výsledek |
 | --- | --- | --- |
-| 1 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 2 | Otevřít vývojářské nástroje pomocí klávesy F12. | Zobrazí se vývojářské nástroje prohlížeče. |
-| 3 | Zapnout režim mobilního zařízení a nastavit rozlišení na `360 × 800 px`. | Stránka se zobrazí v nastavené mobilní velikosti. |
-| 4 | Pohledem zkontrolovat přihlašovací formulář. | Formulář se vejde do šířky obrazovky, jeho prvky se nepřekrývají a není potřeba vodorovné posouvání. |
-| 5 | Zkontrolovat pole E-mail, pole Heslo a tlačítko Přihlásit se. | Všechny prvky jsou celé viditelné, čitelné a dostupné pro ovládání. |
-| 6 | Do pole E-mail zadat `test@test.cz` a do pole Heslo zadat `Heslo123`. | Hodnoty lze zadat a formulář zůstává správně zobrazený. |
-| 7 | Kliknout na tlačítko Přihlásit se. | Tlačítko je možné použít a formulář se odešle. |
+| 1 | Otevřít stránku `/login`. | Zobrazí se přihlašovací stránka. |
+| 2 | Otevřít Chrome DevTools, zapnout režim zařízení a nastavit šířku na 320 px. | Stránka se zobrazí v nastavené šířce. |
+| 3 | Zkontrolovat přihlašovací stránku. | Nadpis, pole a tlačítko jsou viditelné, použitelné a stránka nemá vodorovný posuvník. |
+| 4 | Zadat platné přihlašovací údaje a kliknout na tlačítko Přihlásit se. | Uživatel je přesměrován na `/dashboard`. |
+| 5 | Zkontrolovat dashboard při stejné šířce 320 px. | Text `Vítejte` a tlačítko Odhlásit se jsou viditelné, použitelné a stránka nemá vodorovný posuvník. |
 
-## Očekávaný výsledek
+**Celkový očekávaný výsledek:** Přihlašovací stránka i dashboard se při šířce 320 px zobrazí správně a bez vodorovného posouvání.
 
-Přihlašovací formulář je při šířce obrazovky 360 px celý viditelný a použitelný. Prvky se nepřekrývají, není nutné vodorovné posouvání a formulář lze vyplnit a odeslat.
+**Skutečný výsledek:** Při nastavené šířce 320 px se přihlašovací stránka i dashboard zobrazily bez vodorovného posouvání. Nadpisy, vstupní pole a tlačítka byly viditelné a použitelné.
 
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-
-# TC-021 – Zobrazení výsledku přihlášení do 2 sekund
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-021 |
-| Název | Zobrazení výsledku přihlášení do 2 sekund |
-| Testovací scénář | TS-023 |
-| Požadavek | NFR-005 |
-| Typ testu | Výkon |
-| Priorita | Nízká |
-| Prostředí | Google Chrome, Windows, Chrome DevTools |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Uživatel není přihlášený.
-- Přihlašovací stránka je otevřená.
-- Testovací účet existuje.
-- V prohlížeči není nastavené omezení rychlosti připojení.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo123` |
-| Maximální povolený čas | `2 sekundy` |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 2 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 3 | Otevřít vývojářské nástroje a kartu Performance. | Zobrazí se nástroj pro měření výkonu. |
-| 4 | Spustit nahrávání výkonu. | Prohlížeč začne zaznamenávat průběh aplikace. |
-| 5 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle. |
-| 6 | Po zobrazení výsledku přihlášení zastavit nahrávání. | Záznam výkonu se ukončí a zobrazí se časová osa. |
-| 7 | Změřit čas od kliknutí na tlačítko do zobrazení dashboardu. | Naměřený čas je nejvýše 2 sekundy. |
-
-## Očekávaný výsledek
-
-Výsledek přihlášení a stránka `/dashboard` se zobrazí nejpozději do 2 sekund od odeslání formuláře.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden. Naměřený čas bude doplněn při provedení testu.
-
-## Výsledný stav
-
-**Not Run**
-
----
-# TC-022 – Přihlášení v prohlížeči Microsoft Edge
-
-| Položka | Hodnota |
-| --- | --- |
-| Test Case ID | TC-022 |
-| Název | Základní přihlášení v prohlížeči Microsoft Edge |
-| Testovací scénář | TS-024 |
-| Požadavky | FR-007, NFR-004 |
-| Typ testu | Cross-browser, pozitivní |
-| Priorita | Střední |
-| Prostředí | Microsoft Edge, Windows |
-| Stav | Not Run |
-
-## Vstupní podmínky
-
-- Aplikace je spuštěná.
-- Prohlížeč Microsoft Edge je nainstalovaný.
-- Uživatel není přihlášený.
-- Testovací účet existuje.
-
-## Testovací data
-
-| Pole | Hodnota |
-| --- | --- |
-| E-mail | `test@test.cz` |
-| Heslo | `Heslo123` |
-
-## Kroky testu
-
-| Krok | Akce | Očekávaný výsledek |
-| --- | --- | --- |
-| 1 | Otevřít prohlížeč Microsoft Edge. | Prohlížeč se spustí. |
-| 2 | Otevřít adresu `http://localhost:5173/login`. | Zobrazí se přihlašovací formulář. |
-| 3 | Zkontrolovat zobrazení formuláře. | Pole E-mail, pole Heslo a tlačítko Přihlásit se jsou správně zobrazené a nepřekrývají se. |
-| 4 | Do pole E-mail zadat `test@test.cz`. | E-mail se zobrazí v poli. |
-| 5 | Do pole Heslo zadat `Heslo123`. | Heslo je zadané a jeho znaky jsou skryté. |
-| 6 | Kliknout na tlačítko Přihlásit se. | Formulář se odešle. |
-| 7 | Zkontrolovat aktuální adresu a obsah stránky. | Uživatel je přesměrován na `/dashboard` a zobrazí se informace o úspěšném přihlášení. |
-
-## Očekávaný výsledek
-
-Přihlašovací formulář se v prohlížeči Microsoft Edge správně zobrazí a funguje. Uživatel se může přihlásit a je přesměrován na stránku `/dashboard`.
-
-## Skutečný výsledek
-
-Nevyplněno – test zatím nebyl proveden.
-
-## Výsledný stav
-
-**Not Run**
-
----
-## 3. Poznámka k provedení testů
-
-Pole Skutečný výsledek a Výsledný stav budou doplněna až po spuštění aplikace a skutečném provedení testů.
-
-Test nesmí být označen jako Passed pouze na základě očekávání. Stav Passed lze použít jen tehdy, pokud byl test skutečně proveden a skutečný výsledek odpovídal očekávanému výsledku.
-
----
-
+**Výsledný stav:** Passed

@@ -1,6 +1,6 @@
 # Test Plan – Login Form QA
 
-## 1\. Základní informace
+## 1. Základní informace
 
 | Položka | Hodnota |
 | --- | --- |
@@ -8,117 +8,56 @@
 | Testovaný projekt | Login Form QA |
 | Typ testování | Manuální testování |
 | Verze dokumentu | 1.0 |
-| Stav dokumentu | Rozpracováno |
+| Stav dokumentu | Dokončeno |
+| Datum dokončení testování | 21. 9. 2026 |
 | Tester | Katarína Kubašková |
 
-## 2\. Cíl testování
+## 2. Cíl a rozsah testování
 
-Cílem je ověřit, že přihlašovací formulář, uživatelský dashboard a odhlášení fungují podle definovaných požadavků.
+Cílem je ověřit, že přihlašovací formulář, dashboard a odhlášení fungují podle definovaných funkčních a nefunkčních požadavků.
 
-Testování se zaměří především na:
+### Funkce zahrnuté do testování
 
--   správné přihlášení uživatele,
+- zobrazení přihlašovací stránky a jejích prvků,
+- validace povinných polí, formátu e-mailu a délky hesla,
+- maskování hesla,
+- odeslání formuláře tlačítkem a klávesou Enter,
+- přihlášení platnými a neplatnými údaji,
+- přesměrování a ochrana stránky `/dashboard`,
+- odhlášení uživatele,
+- ovládání klávesnicí a zobrazení při šířce 320 px.
 
--   zpracování neplatných údajů,
+### Funkce mimo rozsah testování
 
--   validaci formuláře,
+- registrace, obnovení a změna hesla,
+- backend, databáze a skutečné ověřování účtů,
+- zachování přihlášení po obnovení stránky,
+- sociální přihlášení, dvoufázové ověření a uživatelské role,
+- penetrační, zátěžové a výkonnostní testování.
 
--   ochranu dashboardu,
+## 3. Testovací přístupy
 
--   odhlášení uživatele,
-
--   základní použitelnost a přístupnost formuláře.
-
-## 3\. Rozsah testování
-
-### 3.1 Funkce zahrnuté do testování
-
-Testování bude zahrnovat:
-
--   zobrazení přihlašovacího formuláře,
-
--   pole E-mail,
-
--   pole Heslo,
-
--   tlačítko Přihlásit se,
-
--   povinná pole,
-
--   validaci formátu e-mailu,
-
--   validaci délky hesla,
-
--   skrytí zadaného hesla,
-
--   přihlášení platnými údaji,
-
--   přihlášení neplatnými údaji,
-
--   odeslání formuláře klávesou Enter,
-
--   přesměrování na dashboard,
-
--   ochranu stránky `/dashboard`,
-
--   odhlášení uživatele,
-
--   ovládání formuláře pomocí klávesnice,
-
--   zobrazení na počítači a mobilním zařízení.
-
-### 3.2 Funkce mimo rozsah testování
-
-Testování nebude zahrnovat:
-
--   registraci uživatele,
-
--   obnovení zapomenutého hesla,
-
--   změnu hesla,
-
--   přihlášení prostřednictvím sociálních sítí,
-
--   dvoufázové ověření,
-
--   uživatelské role,
-
--   bezpečnostní penetrační testování,
-
--   zátěžové a výkonnostní testování.
-
-## 4\. Testovací přístupy
-
-Při testování budou použity následující přístupy:
-
-| Přístup | Použití |
+| Přístup | Použití v projektu |
 | --- | --- |
-| Funkcionální testování | Ověření, že jednotlivé funkce odpovídají požadavkům |
-| Pozitivní testování | Testování platnými a očekávanými vstupy |
-| Negativní testování | Testování neplatnými, prázdnými nebo neočekávanými vstupy |
-| Equivalence Partitioning | Rozdělení vstupních hodnot do skupin s podobným chováním |
-| Boundary Value Analysis | Testování minimálních a maximálních povolených hodnot |
-| Smoke testing | Rychlá kontrola nejdůležitějších funkcí |
-| Regression testing | Kontrola, že úpravy nepoškodily dříve fungující části |
-| Exploratory testing | Volné zkoumání aplikace mimo připravené test cases |
-| Cross-browser testing | Kontrola základní funkčnosti ve více prohlížečích |
+| Funkční testování | Ověření funkcí podle požadavků FR-001 až FR-009 |
+| Pozitivní a negativní testování | Platné přihlášení a různé neplatné vstupy |
+| Equivalence Partitioning | Rozdělení e-mailů a hesel do skupin platných a neplatných hodnot |
+| Boundary Value Analysis | Ověření délky hesla na hodnotách 7, 8, 20 a 21 znaků |
+| Testování použitelnosti a responzivity | Ovládání klávesnicí, viditelné zvýraznění aktivního prvku a zobrazení při šířce 320 px |
 
-## 5\. Testovací prostředí
+## 4. Testovací prostředí
 
 | Položka | Hodnota |
 | --- | --- |
 | Typ aplikace | Webová aplikace |
 | Testovací adresa | `http://localhost:5173/login` |
-| Primární prohlížeč | Google Chrome |
-| Sekundární prohlížeč | Microsoft Edge |
-| Desktopové prostředí | Windows |
-| Mobilní zobrazení | Chrome DevTools, šířka 360 px |
-| Vývojářské nástroje | Chrome DevTools |
-| Evidence chyb | GitHub Markdown a screenshoty |
+| Operační systém | Windows |
+| Prohlížeč | Google Chrome 153.0.8010.53, 64bitový |
+| Lokální server | Vite 8.3.0 |
+| Mobilní zobrazení | Chrome DevTools, šířka 320 px |
+| Evidence výsledků | Markdown dokumentace a screenshoty |
 
-Verze prohlížečů budou před zahájením testování zaznamenány do závěrečného test reportu.
-
-## 6\. Testovací data
+## 5. Testovací data
 
 Pro úspěšné přihlášení bude použit tento demonstrační účet:
 
@@ -127,118 +66,56 @@ Pro úspěšné přihlášení bude použit tento demonstrační účet:
 | Platný e-mail | `test@test.cz` |
 | Platné heslo | `Heslo123` |
 
-Pro negativní testování budou použita například tato data:
+Pro negativní a hraniční testy budou použity:
 
--   neplatný formát e-mailu,
+- prázdná pole,
+- e-mail bez tečky v doméně,
+- e-mail s více znaky `@`,
+- e-mail obsahující mezeru,
+- syntakticky platný, ale neexistující e-mail,
+- nesprávné heslo,
+- hesla o délce 7, 8, 20 a 21 znaků.
 
--   neexistující e-mail,
+## 6. Vstupní a výstupní podmínky
 
--   nesprávné heslo,
-
--   prázdný e-mail,
-
--   prázdné heslo,
-
--   heslo kratší než 8 znaků,
-
--   heslo delší než 20 znaků,
-
--   mezery před a za hodnotou,
-
--   speciální znaky,
-
--   velmi dlouhý text.
-
-## 7\. Vstupní podmínky
+### Vstupní podmínky
 
 Testování může začít, pokud:
 
--   je aplikace dostupná,
+- aplikace běží na lokálním serveru,
+- stránka `/login` je dostupná,
+- požadavky a testovací data jsou připravené,
+- test cases jsou vytvořené,
+- testovací prohlížeč je dostupný.
 
--   je možné otevřít stránku `/login`,
+### Výstupní podmínky
 
--   jsou známé požadavky aplikace,
+Testování je dokončené, pokud:
 
--   je vytvořený testovací účet,
+- byly provedeny všechny naplánované test cases,
+- každý test case má zaznamenaný stav a skutečný výsledek,
+- skutečně nalezené chyby jsou zdokumentované,
+- žádná nezdokumentovaná blokující chyba nebrání dokončení testů,
+- je aktualizovaný souhrn výsledků.
 
--   je dostupný podporovaný prohlížeč,
+## 7. Rizika a evidence výsledků
 
--   je možné pořizovat screenshoty nalezených problémů.
-
-## 8\. Výstupní podmínky
-
-Testování bude považováno za dokončené, pokud:
-
--   budou provedeny všechny připravené test cases,
-
--   budou zaznamenány skutečné výsledky testů,
-
--   budou všechny nalezené chyby zdokumentovány,
-
--   nebude existovat nezdokumentovaná chyba blokující přihlášení,
-
--   bude proveden smoke checklist,
-
--   bude vytvořen závěrečný test report.
-
-## 9\. Výstupy testování
-
-Výsledkem testování budou:
-
--   dokument s požadavky,
-
--   test plan,
-
--   testovací scénáře,
-
--   test cases,
-
--   smoke checklist,
-
--   regression checklist,
-
--   bug reporty,
-
--   záznam exploratory testingu,
-
--   screenshoty nalezených chyb,
-
--   závěrečný test report.
-
-## 10\. Rizika
+### Rizika
 
 | Riziko | Dopad | Opatření |
 | --- | --- | --- |
-| Aplikace nebude dostupná | Testování nebude možné provést | Zkontrolovat spuštění aplikace a adresu |
-| Testovací účet nebude fungovat | Nebude možné ověřit úspěšné přihlášení | Zkontrolovat testovací data |
-| Požadavky budou nejasné | Testy mohou mít nesprávný očekávaný výsledek | Upřesnit požadavek před vytvořením testu |
-| Rozdílné chování prohlížečů | Chyba se nemusí projevit všude stejně | Otestovat aplikaci v Chrome a Edge |
-| Změna aplikace během testování | Výsledky starších testů nemusí být platné | Zaznamenat testovanou verzi aplikace |
+| Lokální server nebude spuštěný | Testování nebude možné zahájit | Před testováním ověřit dostupnost aplikace |
+| Požadavek nebude odpovídat aplikaci | Test může mít nesprávný očekávaný výsledek | Rozdíl vyjasnit a dokumentaci aktualizovat před testem |
+| Aplikace se během testování změní | Starší výsledky nemusí být platné | Zaznamenat testovanou verzi a zopakovat ovlivněné testy |
+| Testování proběhne pouze v Chrome | Chyba specifická pro jiný prohlížeč nemusí být odhalená | Omezení uvést ve výsledcích a případně doplnit další prohlížeč |
 
-## 11\. Evidence chyb
+### Evidence a výstupy
 
-Každá nalezená chyba bude obsahovat:
+Výsledkem testování budou:
 
--   jednoznačné ID,
+- test cases se stavem a skutečným výsledkem,
+- screenshoty neúspěšných testů,
+- bug reporty pouze pro skutečně nalezené chyby,
+- souhrnný dokument `05-test-results.md`.
 
--   stručný název,
-
--   testované prostředí,
-
--   vstupní podmínky,
-
--   kroky pro reprodukci,
-
--   očekávaný výsledek,
-
--   skutečný výsledek,
-
--   severity,
-
--   priority,
-
--   screenshot nebo jinou dostupnou evidenci.
-
-## 12\. Stav dokumentu
-
-Tento test plan bude v průběhu projektu aktualizován podle změn aplikace, požadavků a výsledků testování.
+Test plan bude aktualizován při změně požadavků, rozsahu, prostředí nebo způsobu testování.

@@ -1,76 +1,50 @@
 # Požadavky aplikace Login Form QA
 
-## 1\. Účel dokumentu
+## 1. Účel dokumentu
 
-Tento dokument popisuje požadavky na jednoduchou webovou aplikaci určenou k přihlašování uživatelů.
+Účelem dokumentu je popsat testovatelné požadavky aplikace. Požadavky slouží jako podklad pro vytvoření testovacího plánu, testovacích scénářů a test cases a pro porovnání očekávaného chování aplikace se skutečným výsledkem.
 
-Požadavky budou sloužit jako podklad pro vytvoření testovacího plánu, testovacích scénářů, test cases a bug reportů.
-
-## 2\. Popis aplikace
+## 2. Popis aplikace
 
 Aplikace obsahuje přihlašovací stránku a chráněný uživatelský dashboard.
 
-Uživatel zadá svůj e-mail a heslo. Po úspěšném přihlášení bude přesměrován na dashboard. Při zadání neplatných údajů zůstane na přihlašovací stránce a zobrazí se mu chybová zpráva.
+Uživatel zadá svůj e-mail a heslo. Pokud jsou přihlašovací údaje platné, aplikace uživatele přihlásí a přesměruje na dashboard. Při zadání neplatných údajů zůstane uživatel na přihlašovací stránce a zobrazí se chybová zpráva.
 
-## 3. Testovací účty
+Přihlášený uživatel se může z dashboardu odhlásit.
 
-Testovací účty jsou určené pouze pro účely tohoto projektu.
-
-| Účel účtu | E-mail | Heslo |
-| --- | --- | --- |
-| Standardní testy přihlášení | `test@test.cz` | `Heslo123` |
-| Test maximální délky hesla | `boundary20@test.cz` | `Heslo123456789012345` |
-
-## 4\. Funkční požadavky
+## 3. Funkční požadavky
 
 | ID | Požadavek |
 | --- | --- |
-| FR-001 | Přihlašovací formulář musí být dostupný na adrese `/login`. |
-| FR-002 | Formulář musí obsahovat pole E-mail, pole Heslo a tlačítko Přihlásit se. |
-| FR-003 | Pole E-mail a Heslo musí být povinná. |
-| FR-004 | Pole E-mail musí přijímat pouze hodnotu ve správném formátu e-mailové adresy. |
-| FR-005 | Heslo musí obsahovat minimálně 8 a maximálně 20 znaků. |
-| FR-006 | Zadané heslo musí být v poli skryté. |
-| FR-007 | Po zadání platných přihlašovacích údajů musí být uživatel přesměrován na `/dashboard`. |
-| FR-008 | Dashboard musí zobrazit informaci o úspěšném přihlášení. |
-| FR-009 | Při zadání neplatného e-mailu nebo hesla musí aplikace zobrazit zprávu `Neplatný e-mail nebo heslo.` |
-| FR-010 | Po neúspěšném přihlášení musí uživatel zůstat na stránce `/login`. |
-| FR-011 | Formulář musí být možné odeslat kliknutím na tlačítko Přihlásit se. |
-| FR-012 | Formulář musí být možné odeslat klávesou Enter. |
-| FR-013 | Dashboard musí obsahovat tlačítko Odhlásit se. |
-| FR-014 | Po odhlášení musí být uživatel přesměrován zpět na `/login`. |
-| FR-015 | Nepřihlášený uživatel nesmí mít přístup na `/dashboard`. Při pokusu o přístup musí být přesměrován na `/login`. |
+| FR-001 | Aplikace musí na adrese `/login` zobrazit přihlašovací stránku s poli E-mail a Heslo a tlačítkem Přihlásit se. |
+| FR-002 | Pole E-mail a Heslo musí být povinná. |
+| FR-003 | Pole E-mail musí přijmout pouze adresu, která obsahuje neprázdnou část před jediným znakem `@`, doménu s tečkou a neprázdnou koncovku za poslední tečkou a neobsahuje mezery. |
+| FR-004 | Heslo musí obsahovat 8 až 20 znaků včetně a jeho znaky musí být v poli maskované. |
+| FR-005 | Přihlašovací formulář musí být možné odeslat tlačítkem Přihlásit se i klávesou Enter. |
+| FR-006 | Po odeslání platných přihlašovacích údajů musí aplikace uživatele přesměrovat na `/dashboard` a zobrazit text `Vítejte`. |
+| FR-007 | Pokud e-mail nebo heslo neodpovídá platnému demo účtu, aplikace musí zobrazit zprávu `Zadali jste chybný e-mail nebo heslo.` a uživatel musí zůstat na `/login`. |
+| FR-008 | Dashboard musí obsahovat tlačítko Odhlásit se. Po odhlášení musí aplikace uživatele přesměrovat na `/login`. |
+| FR-009 | Nepřihlášenému uživateli nesmí aplikace zobrazit obsah `/dashboard` a musí ho přesměrovat na `/login`. |
 
-## 5\. Nefunkční požadavky
+## 4. Nefunkční požadavky
 
 | ID | Požadavek |
 | --- | --- |
-| NFR-001 | Formulář musí být ovladatelný pomocí klávesnice. |
-| NFR-002 | Všechna formulářová pole musí mít srozumitelné textové popisky. |
-| NFR-003 | Chybové zprávy musí být čitelné a jednoznačné. |
-| NFR-004 | Přihlašovací formulář musí být použitelný na počítači i mobilním zařízení. |
-| NFR-005 | Výsledek přihlášení musí být zobrazen nejpozději do 2 sekund od odeslání formuláře. |
+| NFR-001 | Přihlašovací formulář musí být ovladatelný pomocí klávesnice a aktivní prvek musí být viditelně zvýrazněný. |
+| NFR-002 | Přihlašovací stránka i dashboard se musí zobrazit bez vodorovného posouvání při šířce obrazovky 320 px a větší. |
 
-## 6\. Funkce mimo rozsah projektu
+## 5. Funkce mimo rozsah projektu
 
-Součástí první verze aplikace nebudou:
+Součástí této verze aplikace nejsou:
 
--   registrace nového uživatele,
+- registrace, obnovení ani změna hesla,
+- backend, databáze a ověřování skutečných uživatelských účtů,
+- zachování přihlášení po obnovení stránky,
+- přihlášení přes sociální sítě, dvoufázové ověření a uživatelské role.
 
--   obnovení zapomenutého hesla,
+## 6. Poznámky a předpoklady
 
--   změna hesla,
-
--   přihlášení prostřednictvím sociálních sítí,
-
--   dvoufázové ověření,
-
--   uživatelské role.
-
-## 7\. Poznámky a předpoklady
-
--   Testovací účet je pouze demonstrační a neobsahuje skutečné osobní údaje.
-
--   Aplikace je vytvořena pro studijní a testovací účely.
-
--   Všechny požadavky musí být ověřitelné alespoň jedním test casem.
+- Aplikace je vytvořena pro studijní a testovací účely.
+- Přihlášení je simulováno v prohlížeči porovnáním údajů s pevně nastaveným demo účtem. Aplikace nemá backend ani databázi a nepředstavuje produkční zabezpečení.
+- Konkrétní přihlašovací údaje jsou uvedeny v testovacím plánu jako testovací data.
+- Každý požadavek musí být pokrytý alespoň jedním test casem.
